@@ -21,7 +21,7 @@ Now execute:
 `python3 main.py <INPUT FILE>`
 
 ## Input
-Read in a CSV file with THIS header, and each column aligned with the following:
+Read in a CSV file with THIS header, and each column aligned with the following (note the trailing `|`):
 `title|description|startTime|endTime|location|imageUrl|`
 
 Each field is delimited by a pipe (`|`).
