@@ -4,6 +4,12 @@ Simple Python 3 script used to batch upload events to [Parade](https://parade.ev
 
 Parade backend is running GraphQL with auth sent via the Authorization header.
 
+## Setup
+
+Utilizes prisma's [python-graphql-client](https://github.com/prisma/python-graphql-client) to wrap the GraphQL requests.  
+
+Install by running `pip install graphqlclient'
+
 ## Usage
 
 First, set environment variable `PARADE_JWT` to a valid Parade token.  
