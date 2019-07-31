@@ -8,7 +8,7 @@ Parade backend is running GraphQL with auth sent via the Authorization header.
 
 Utilizes prisma's [python-graphql-client](https://github.com/prisma/python-graphql-client) to wrap the GraphQL requests.  
 
-Install by running `pip install graphqlclient'
+Install by running `pip install graphqlclient`
 
 ## Usage
 
