@@ -26,5 +26,11 @@ Read in a CSV file with THIS header, and each column aligned with the following 
 
 Each field is delimited by a pipe (`|`).
 
-See the [example file](./example.csv).
+See the [example file](./example.pipe).
+
+
+## Tips
+A useful excel formula to get times formatted properly. Note the +4 to account for Boston time.
+
+`=CONCATENATE(filtered!A1,"T",TEXT((filtered!C1 + TIME(4,0,0)), "hh:mm:ss"), "Z")`
 
