@@ -22,7 +22,7 @@ Now execute:
 
 You'll see the the graphQL response, whether that be an error or success message.
 
-![upload-msg](assets/upload-msg)
+![upload-msg](assets/upload-msg.png)
 
 ## Input
 Read in a CSV file with THIS header, and each column aligned with the following (note the trailing `|`):
