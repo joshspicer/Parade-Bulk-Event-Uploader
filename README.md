@@ -20,6 +20,10 @@ Now execute:
 
 `python3 main.py <INPUT FILE>`
 
+You'll see the the graphQL response, whether that be an error or success message.
+
+![upload-msg](assets/upload-msg)
+
 ## Input
 Read in a CSV file with THIS header, and each column aligned with the following (note the trailing `|`):
 `title|description|startTime|endTime|location|imageUrl|`
