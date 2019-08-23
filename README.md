@@ -32,5 +32,5 @@ See the [example file](./example.pipe).
 ## Tips
 A useful excel formula to get times formatted properly. Note the +4 to account for Boston time.
 
-`=CONCATENATE(filtered!A1,"T",TEXT((filtered!C1 + TIME(4,0,0)), "hh:mm:ss"), "Z")`
+`=CONCATENATE(TEXT(source!C1, "YYYY-MM-DD"),"T",TEXT((source!E1 + TIME(4,0,0)), "hh:mm:ss"), "Z")`
 
