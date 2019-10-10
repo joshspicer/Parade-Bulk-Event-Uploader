@@ -6,9 +6,15 @@ from graphqlclient import GraphQLClient
 import os
 import sys
 
-## VARIABLES ##
-ENDPOINT = ''
-ORGANIZATION_ID = ''
+############## VARIABLES ##############
+debug = False
+ENDPOINT = 'https://aws-lambda.parade.events/graphql'
+ORGANIZATION_ID = "5bdc6c705a0e30d0fd96cdde"
+# Dev
+# ENDPOINT = 'http://localhost:8080/graphql'
+# ORGANIZATION_ID = '5d4f34804201f0645f257ea5'
+
+########################################
 
 if ENDPOINT == '' or ORGANIZATION_ID == '':
     print('[-] Must set ENDPOINT and ORGANIZATION_ID variables')
@@ -31,7 +37,8 @@ def handleLine(line, idx):
     try:
         ss = line.split('|')
         if len(ss) != 7:
-            print("[-] Invalid line length on event index {}".format(idx))
+            print(
+                "[-] Invalid line length (length={}) on event index {}".format(len(ss), idx))
             return
 
         evt = {
@@ -54,7 +61,7 @@ def handleLine(line, idx):
         if ss[5] != '':
             evt['event']['imageUrl'] = ss[5]
 
-        submit(evt)
+        submit(evt, idx)
 
     except Exception as err:
         print("[-] Error on event index {}. Error: {}".format(idx, err))
@@ -68,11 +75,17 @@ def parseFile():
         header = f.readline()
         # Enumerate each line
         for idx, line in enumerate(f):
+
+            # DEBUG
+            if (debug):
+                print("{} : {} ".format(idx, line))
+                print("====================")
+
             handleLine(line, idx)
 
 
 # Submit an event
-def submit(evt):
+def submit(evt, idx):
     client = GraphQLClient(ENDPOINT)
     client.inject_token('Bearer {0}'.format(token))
 
@@ -86,7 +99,7 @@ def submit(evt):
         ''', variables={"event": evt['event'], "description": evt['description']})
 
     # Print result (error, or new event ID)
-    print(result)
+    print("Idx: {0}. Result: {1}".format(idx, result))
 
 
 # Kick off program
