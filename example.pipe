@@ -1,3 +1,3 @@
-title|description|startTime|endTime|location|imageUrl|
-an event 01|description 01|2019-08-31T01:51:53.368Z||snell|https://joshspicer.com/assets/me/4.png|
-an event 02|description 02|2019-08-31T01:54:53.368Z||snell||
+title|description|startTime|endTime|location|imageUrl|tags
+an event 01|description 01|2019-08-31T01:51:53.368Z||snell|https://joshspicer.com/assets/me/4.png|5b7b1ecd78fa005702fb3c09|
+an event 02|description 02|2019-08-31T01:54:53.368Z||snell|||

@@ -25,8 +25,8 @@ You'll see the the graphQL response, whether that be an error or success message
 ![upload-msg](assets/upload-msg.png)
 
 ## Input
-Read in a CSV file with THIS header, and each column aligned with the following (note the trailing `|`):
-`title|description|startTime|endTime|location|imageUrl|`
+Read in a CSV file with THIS header, and each column aligned with the following (not trailing `|`):
+`title|description|startTime|endTime|location|imageUrl|tags|` 
 
 Each field is delimited by a pipe (`|`).
 
@@ -34,7 +34,19 @@ See the [example file](./example.pipe).
 
 
 ## Tips
-A useful excel formula to get times formatted properly. Note the +4 to account for Boston time.
+A useful excel formula to get times formatted properly. 
+
+Note the +4 to account for Boston time (During Daylight Savings)
+Change to +5 for Outside Daylight Savings.
 
 `=CONCATENATE(TEXT(source!C1, "YYYY-MM-DD"),"T",TEXT((source!E1 + TIME(4,0,0)), "hh:mm:ss"), "Z")`
 
+Useful for conditionally adding endTime
+
+
+`=IF(ISBLANK(source!F1),"",CONCATENATE(TEXT(source!C1, "YYYY-MM-DD"),"T",TEXT((source!F1 + TIME(4,0,0)), "hh:mm:ss"), "Z"))`
+
+
+## Bugs
+
+- Right now only one tags is supported..

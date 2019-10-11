@@ -5,14 +5,18 @@
 from graphqlclient import GraphQLClient
 import os
 import sys
+import json
 
 ############## VARIABLES ##############
-debug = False
+debug = True
+
+# Prod
 ENDPOINT = 'https://aws-lambda.parade.events/graphql'
 ORGANIZATION_ID = "5bdc6c705a0e30d0fd96cdde"
+
 # Dev
-# ENDPOINT = 'http://localhost:8080/graphql'
-# ORGANIZATION_ID = '5d4f34804201f0645f257ea5'
+#ENDPOINT = 'http://localhost:8080/graphql'
+#ORGANIZATION_ID = '5d4f34804201f0645f257ea5'
 
 ########################################
 
@@ -36,7 +40,7 @@ if len(sys.argv) != 2:
 def handleLine(line, idx):
     try:
         ss = line.split('|')
-        if len(ss) != 7:
+        if len(ss) != 8:
             print(
                 "[-] Invalid line length (length={}) on event index {}".format(len(ss), idx))
             return
@@ -60,6 +64,9 @@ def handleLine(line, idx):
             evt['description']['full'] = ss[1]
         if ss[5] != '':
             evt['event']['imageUrl'] = ss[5]
+        
+        if ss[6] != '':
+            evt['event']['tagIds'] = ss[6].replace('\"', "")  # .replace("\\n", "").replace("\n","").replace(" ","")
 
         submit(evt, idx)
 
@@ -88,6 +95,11 @@ def parseFile():
 def submit(evt, idx):
     client = GraphQLClient(ENDPOINT)
     client.inject_token('Bearer {0}'.format(token))
+
+
+    if debug:
+        print(evt['event'])
+        print(evt['description'])
 
     # Execute createEvent mutation
     result = client.execute('''
