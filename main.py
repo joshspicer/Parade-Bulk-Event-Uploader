@@ -8,7 +8,7 @@ import sys
 import json
 
 ############## VARIABLES ##############
-debug = True
+debug = False
 
 # Prod
 ENDPOINT = 'https://aws-lambda.parade.events/graphql'
@@ -66,7 +66,7 @@ def handleLine(line, idx):
             evt['event']['imageUrl'] = ss[5]
         
         if ss[6] != '':
-            evt['event']['tagIds'] = ss[6].replace('\"', "")  # .replace("\\n", "").replace("\n","").replace(" ","")
+            evt['event']['tagIds'] = ss[6]
 
         submit(evt, idx)
 
