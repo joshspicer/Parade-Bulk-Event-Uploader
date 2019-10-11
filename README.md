@@ -36,8 +36,9 @@ See the [example file](./example.pipe).
 ## Tips
 A useful excel formula to get times formatted properly. 
 
-Note the +4 to account for Boston time (During Daylight Savings)
-Change to +5 for Outside Daylight Savings.
+**Note**
+* +4 to account for Boston time **during** Daylight Savings
+* +5 for Boston when **outside** Daylight Savings.
 
 `=CONCATENATE(TEXT(source!C1, "YYYY-MM-DD"),"T",TEXT((source!E1 + TIME(4,0,0)), "hh:mm:ss"), "Z")`
 
@@ -46,7 +47,3 @@ Useful for conditionally adding endTime
 
 `=IF(ISBLANK(source!F1),"",CONCATENATE(TEXT(source!C1, "YYYY-MM-DD"),"T",TEXT((source!F1 + TIME(4,0,0)), "hh:mm:ss"), "Z"))`
 
-
-## Bugs
-
-- Right now only one tags is supported..
